@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // {
+    //   "name": "Attach by Process ID",
+    //   "port": 4321,
+    //   "request": "attach",
+    //   "skipFiles": ["<node_internals>/**"],
+    //   "type": "pwa-node"
+    // },
+    {
+      "type": "pwa-node",
+      "name": "RUN & DEBUG (TS)",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
+      // "program": "${workspaceFolder}/src/server.ts",
+      "args": [
+        // "--files",
+        "--transpile-only",
+        "--respawn",
+        // "--inspect=4321",
+        "--project",
+        "tsconfig.json",
+        "${workspaceFolder}/src/server.ts"
+      ],
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
