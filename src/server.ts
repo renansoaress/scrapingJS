@@ -7,7 +7,7 @@ import { oi } from "../src/oi";
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const getPostTitles = async () => {
   try {
