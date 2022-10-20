@@ -85,7 +85,9 @@ app.listen(port, async () => {
   await storage.init();
   setInterval(async () => {
     // console.log("RODANDO...");
-    await getInfo();
+    getInfo()
+      .then(() => console.log("getInfo - ok"))
+      .catch((e) => console.log("error>> ", e));
   }, 30000);
   console.log(`[server start - PORT(${port})]`);
 });
