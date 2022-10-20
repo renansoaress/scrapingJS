@@ -32,7 +32,7 @@ const getInfo = async () => {
       const $ = cheerio.load(data);
       const element = $(dataValue.path);
       if (element.length && !element.attr("disabled")) {
-        sendMyBot(api, `${dataValue.message} => ${dataValue.url}`);
+        api && sendMyBot(api, `${dataValue.message} => ${dataValue.url}`);
         dataValue.isAvailable = true;
       } else {
         dataValue.isAvailable = false;
@@ -62,6 +62,12 @@ app.get("/store", async (req: Request, res: Response) => {
 
 app.get("/add", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "/view/add.html"));
+});
+
+app.get("/delete/:key", async (req: Request, res: Response) => {
+  const { key } = req.params;
+  key && await storage.removeItem(key);
+  res.redirect("/");
 });
 
 app.get("/clear", async (req: Request, res: Response) => {

@@ -22,6 +22,7 @@
               <th scope="col">MESSAGE</th>
               <th scope="col">URL</th>
               <th scope="col">PATH</th>
+              <th scope="col">DELETE</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -42,6 +43,8 @@
                 const aUrl = document.createElement("a");
                 const tdPath = document.createElement("td");
                 const tdMessage = document.createElement("td");
+                const tdDelete = document.createElement("td");
+                const aDelete = document.createElement("a");
 
                 th.append(data.key);
                 tdStatus.append(
@@ -54,11 +57,15 @@
                 tdUrl.appendChild(aUrl);
                 tdPath.append(data.path);
                 tdMessage.append(data.message);
+                aDelete.setAttribute("href", `delete/${data.key}`);
+                aDelete.append("X");
+                tdDelete.appendChild(aDelete);
                 tr.appendChild(th);
                 tr.appendChild(tdStatus);
                 tr.appendChild(tdMessage);
                 tr.appendChild(tdUrl);
                 tr.appendChild(tdPath);
+                tr.appendChild(tdDelete);
                 document.querySelector("tbody").appendChild(tr);
               });
             }
