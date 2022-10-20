@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container text-center" style="margin-top: 30px">
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">STATUS</th>
+              <th scope="col">MESSAGE</th>
+              <th scope="col">URL</th>
+              <th scope="col">PATH</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      window.onload = (event) => {
+        fetch("/store").then((response) => {
+          response.json().then((value) => {
+            if (value.length > 0) {
+              value.forEach((data) => {
+                console.log(data);
+                const tr = document.createElement("tr");
+                const th = document.createElement("th");
+                const tdStatus = document.createElement("td");
+                const tdUrl = document.createElement("td");
+                const aUrl = document.createElement("a");
+                const tdPath = document.createElement("td");
+                const tdMessage = document.createElement("td");
+
+                th.append(data.key);
+                tdStatus.append(
+                  data.isAvailable ? "Disponível" : "Indisponível"
+                );
+                tdStatus.style.background = data.isAvailable ? "green" : "red";
+                aUrl.setAttribute("href", data.url);
+                aUrl.setAttribute("target", "_blank");
+                aUrl.append("LINK !!!");
+                tdUrl.appendChild(aUrl);
+                tdPath.append(data.path);
+                tdMessage.append(data.message);
+                tr.appendChild(th);
+                tr.appendChild(tdStatus);
+                tr.appendChild(tdMessage);
+                tr.appendChild(tdUrl);
+                tr.appendChild(tdPath);
+                document.querySelector("tbody").appendChild(tr);
+              });
+            }
+          });
+        });
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
