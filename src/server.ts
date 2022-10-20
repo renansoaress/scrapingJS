@@ -28,7 +28,7 @@ const getInfo = async () => {
   await storage.forEach(async (store) => {
     const dataValue: dataProps = store.value;
     try {
-      const { data } = await axios.get(dataValue.url);
+      const { data } = await axios.get(dataValue.url, { timeout: 30000 });
       const $ = cheerio.load(data);
       const element = $(dataValue.path);
       if (element.length && !element.attr("disabled")) {
@@ -88,6 +88,6 @@ app.listen(port, async () => {
     getInfo()
       .then(() => console.log("getInfo - ok"))
       .catch((e) => console.log("error>> ", e));
-  }, 30000);
+  }, 40000);
   console.log(`[server start - PORT(${port})]`);
 });
