@@ -86,7 +86,7 @@ app.listen(port, async () => {
   setInterval(async () => {
     // console.log("RODANDO...");
     getInfo()
-      .then(() => console.log("getInfo - ok"))
+      // .then(() => console.log("getInfo - ok"))
       .catch((e) => console.log("error>> ", e));
   }, 40000);
   console.log(`[server start - PORT(${port})]`);
