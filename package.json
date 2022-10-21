@@ -26,7 +26,7 @@
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc",
-    "copyViews": "copyfiles --error --up 1 src/view/*.* build",
+    "copyViews": "copyfiles --error --up 1 src/view/*.* build/",
     "postbuild": "yarn run copyViews"
   }
 }
