@@ -6,6 +6,7 @@ import { sendMyBot } from "./api";
 import path from "path";
 import bodyParser from "body-parser";
 import storage from "node-persist";
+import serveIndex from "serve-index";
 
 interface dataProps {
   url: string;
@@ -86,6 +87,9 @@ app.post("/add", urlencodedParser, async (req, res) => {
   }
   res.redirect("/");
 });
+
+app.use("/static", express.static(path.join(__dirname, "/static")));
+app.use("/static", serveIndex(path.join(__dirname, "/static")));
 
 app.listen(port, async () => {
   await storage.init();
